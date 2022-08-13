@@ -1,8 +1,9 @@
 {
   "name": "@seanvelasco/winston-mqtt",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "MQTT Transport for Winston",
-  "main": "index.js",
+  "main": "build/index.js",
+  "files": ["build"],
   "scripts": {
     "dev": "nodemon src/index.ts",
     "build": "tsc"
