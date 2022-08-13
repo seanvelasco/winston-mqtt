@@ -1,3 +1,8 @@
+## Installation
+
+```
+npm install @seanvelasco/winston-mqtt
+```
 
 ## Usage
 
@@ -25,10 +30,11 @@ const logger = winston.createLogger({
 ## Limitations
 
 - Creates new MQTT client for each transport
+- Unable to reuse the same MQTT client for multiple transports
 - Does not support multiple topics for the same transport
 - No TLS support
 
 ## In the future
-
 - TLS support
+- Reuse MQTT client for multiple transports
 - Add option for delayed publishing
