@@ -27,6 +27,12 @@ const logger = winston.createLogger({
 })
 ```
 
+## Features
+
+### Include level, log message, and meta properties in the message as JSON payload
+
+Pass `includeMeta: true` when instantiating the MQTT transport to include the level, message, and meta properties in the message as JSON payload.
+
 ## Limitations
 
 - Creates new MQTT client for each transport
