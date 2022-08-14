@@ -1,6 +1,6 @@
 {
   "name": "@seanvelasco/winston-mqtt",
-  "version": "1.1.2",
+  "version": "1.1.4",
   "description": "MQTT Transport for Winston",
   "main": "build/index.js",
   "files": ["build"],

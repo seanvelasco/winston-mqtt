@@ -12,6 +12,7 @@ class MQTT extends Transport {
     topic: string
     connected: boolean = false
     includeMeta: boolean
+    delay: number | null
     constructor(opts: any) {
         super(opts)
         this.host = opts.host || 'localhost'
@@ -22,6 +23,7 @@ class MQTT extends Transport {
         this.protocolVersion = opts.protocolVersion || 5
         this.topic = opts.topic || opts.level
         this.includeMeta = opts.includeMeta || false
+        this.delay = opts.delay || null
 
         this.client = mqtt.connect(this.host, {
             port: this.port,
@@ -50,18 +52,23 @@ class MQTT extends Transport {
 
     log(logMessage: any, callback: CallableFunction) {
 
+        if (this.delay) {
+            (async () => {
+                new Promise(resolve => setTimeout(resolve, this.delay))
+            })()
+        }
+
         const { level, message, ...meta } = logMessage
 
         if (this.includeMeta === true) {
             this.client.publish(this.topic, JSON.stringify(logMessage), {
-                properties: {
-                    contentType: 'application/json',
-                }
+                properties: { contentType: 'application/json' }
             })
         }
-
-        this.client.publish(this.topic, message)
-
+        else {
+            this.client.publish(this.topic, message)
+        }
+        
         callback()
     }
 }
